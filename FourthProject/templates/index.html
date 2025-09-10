@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Common Template Tags Demo</h2>
+
+<!-- 1. if / else -->
+{% if age >= 18 %}
+    <p>You are an <strong>Adult</strong>.</p>
+{% else %}
+    <p>You are a <strong>Minor</strong>.</p>
+{% endif %}
+
+<!-- 2. for loop + empty -->
+<h3>Student List:</h3>
+<ul>
+{% for student in students %}
+    <li>{{ forloop.counter }}. {{ student.name }}</li>
+{% empty %}
+    <li>No students available.</li>
+{% endfor %}
+</ul>
+
+<!-- 3. url tag -->
+<p>Go back to <a href="{% url 'home' %}">Home</a></p>
+
+<!-- 4. csrf_token -->
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter Name">
+    <button type="submit">Submit</button>
+</form>
+
+<!-- 5. comment -->
+{% comment %}
+This is a comment and will not appear in the HTML output.
+{% endcomment %}
+
+<!-- 6. static tag -->
+<img src="{% static 'images/logo.png' %}" alt="Logo" width="150">
+
+{% endblock %}
